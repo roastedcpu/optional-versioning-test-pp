@@ -5,7 +5,7 @@ git fetch --all --tags
 
 CURRENT_COMMIT_HASH=$(git rev-parse HEAD)
 LATEST_TAG_HASH=$(git rev-list -1 --tags)
-LATEST_TAG_NAME=$(git tag | head -1)
+LATEST_TAG_NAME=$(git tag --sort=committerdate | tail -1)
 
 if [ "$CURRENT_COMMIT_HASH" = "$LATEST_TAG_HASH" ]; then
     echo "There's already a tag assigned to HEAD commit. Setting version to $LATEST_TAG_NAME" # use this as version

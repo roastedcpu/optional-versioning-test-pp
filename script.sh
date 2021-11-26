@@ -1,5 +1,7 @@
-git fetch --all --tags
 yarn config set version-git-tag false
+npm install project-version
+
+git fetch --all --tags
 
 CURRENT_COMMIT_HASH=$(git rev-parse HEAD)
 LATEST_TAG_HASH=$(git rev-list -1 --tags)
@@ -13,17 +15,7 @@ else
     echo "Incrementing minor"
     npm version --no-git-tag-version $LATEST_TAG_NAME
     yarn version --patch
-    npm version
+    VERSION=$(npx project-version)
+    git tag -a $VERSION -m "Automatic tagging by pipeline. To set a custom version please tag the last <main> commit before running the pipeline." 
+    git push origin $VERSION
 fi
- 
-
-
-
-#npm version --no-git-tag-version 0.35.24
-#git tag -a 0.25.24 -m "Automatic tagging by pipeline. To set a custom version please tag the last <main> commit before running the pipeline." 
-#git push origin 0.25.24
-
-
-
-#git fetch --all --tags
-#git tag

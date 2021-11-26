@@ -1,6 +1,6 @@
 {
     "name": "@testcompany/core-utils",
-    "version": "0.35.23",
+    "version": "0.35.24",
     "main": "index.js",
     "license": "UNLICENSED",
     "scripts": {
